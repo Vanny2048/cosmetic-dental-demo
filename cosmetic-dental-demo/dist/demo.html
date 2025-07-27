@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmetic Dental AI Agency - Complete Automation Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .navbar {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #667eea;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 100px 20px 20px;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+        }
+        
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            letter-spacing: -0.02em;
+        }
+        
+        .header p {
+            font-size: 1.4rem;
+            font-weight: 400;
+            opacity: 0.95;
+            letter-spacing: 0.01em;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .system-card {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .system-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+        
+        .system-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 35px 90px rgba(0,0,0,0.2);
+        }
+        
+        .system-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .system-icon {
+            font-size: 2.5rem;
+            margin-right: 15px;
+        }
+        
+        .system-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a202c;
+            letter-spacing: -0.01em;
+        }
+        
+        .system-description {
+            color: #64748b;
+            margin-bottom: 25px;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        
+        .demo-section {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .demo-title {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            margin: 5px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+        
+        .btn-secondary {
+            background: #f1f5f9;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .btn-secondary:hover {
+            background: #e2e8f0;
+            transform: translateY(-1px);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+        }
+        
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.6);
+        }
+        
+        .simulation-area {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px dashed #e2e8f0;
+            text-align: center;
+            margin: 15px 0;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        
+        .simulation-active {
+            border-color: #10b981;
+            background: #f0fdf4;
+        }
+        
+        .phone-display {
+            background: #1e293b;
+            color: white;
+            padding: 20px;
+            border-radius: 16px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .sms-thread {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .sms-message {
+            background: #e2e8f0;
+            padding: 12px 16px;
+            border-radius: 18px;
+            margin: 8px 0;
+            max-width: 80%;
+        }
+        
+        .sms-sent {
+            background: #3b82f6;
+            color: white;
+            margin-left: auto;
+            text-align: right;
+        }
+        
+        .sms-received {
+            background: #e5e7eb;
+            color: #374151;
+        }
+        
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .metric-card {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .metric-value {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #667eea;
+            margin-bottom: 5px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .metric-label {
+            color: #64748b;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+        
+        .status-online {
+            background: #10b981;
+        }
+        
+        .status-busy {
+            background: #ef4444;
+        }
+        
+        .status-idle {
+            background: #f59e0b;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .deployment-info {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 40px;
+            margin: 40px 0;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .deployment-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .deployment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .deployment-card {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .deployment-card h3 {
+            font-family: 'Poppins', sans-serif;
+            color: #374151;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .code-block {
+            background: #1e293b;
+            color: #10b981;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-list li::before {
+            content: '✅';
+            margin-right: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .systems-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .container {
+                padding: 80px 15px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">🦷 AI Dental Agency</div>
+            <ul class="nav-links">
+                <li><a href="#deployment">Deployment</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#demo">Demo</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Complete AI Automation Suite</h1>
+            <p>Comprehensive demo showcasing all 7 core automation systems for cosmetic dental practices. Ready for Netlify deployment!</p>
+        </div>
+
+        <div class="deployment-info" id="deployment">
+            <div class="deployment-title">🌐 Netlify Deployment Ready</div>
+            <p style="text-align: center; color: #64748b; margin-bottom: 30px;">Your demo is fully prepared for Netlify deployment with optimized build configuration.</p>
+            
+            <div class="deployment-grid">
+                <div class="deployment-card">
+                    <h3>📦 Frontend Deployment</h3>
+                    <p>The React website is production-ready with:</p>
+                    <ul class="feature-list">
+                        <li>Optimized build output in /dist folder</li>
+                        <li>Netlify configuration file (netlify.toml)</li>
+                        <li>SPA routing with _redirects</li>
+                        <li>Asset optimization and caching</li>
+                        <li>Professional UI with modern fonts</li>
+                    </ul>
+                    <div class="code-block">
+                        # Deploy folder: cosmetic-dental-demo/dist/
+                        # Build command: npm run build
+                        # Node version: 20
+                    </div>
+                </div>
+                
+                <div class="deployment-card">
+                    <h3>⚙️ Backend Limitations</h3>
+                    <p>Note: The AI phone assistant backend requires:</p>
+                    <ul style="list-style: disc; padding-left: 20px; color: #64748b;">
+                        <li>Server environment (not static hosting)</li>
+                        <li>OpenAI API keys for AI responses</li>
+                        <li>Database for patient information</li>
+                        <li>Twilio integration for SMS/calls</li>
+                    </ul>
+                    <p style="margin-top: 15px; color: #f59e0b; font-weight: 500;">
+                        💡 For full functionality, consider deploying the Flask backend on Heroku, Railway, or similar platforms.
+                    </p>
+                </div>
+                
+                <div class="deployment-card">
+                    <h3>🎯 What Works on Netlify</h3>
+                    <p>Static features that work perfectly:</p>
+                    <ul class="feature-list">
+                        <li>Professional dental website</li>
+                        <li>Interactive UI demonstrations</li>
+                        <li>Chat widget simulations</li>
+                        <li>Booking calendar interface</li>
+                        <li>Payment form mockups</li>
+                        <li>Analytics dashboards</li>
+                        <li>SMS thread simulations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="systems-grid" id="features">
+            <!-- AI Phone Assistant + Smart Call Routing -->
+            <div class="system-card">
+                <div class="system-header">
+                    <div class="system-icon">📞</div>
+                    <div class="system-title">AI Phone Assistant + Smart Call Routing</div>
+                </div>
+                <div class="system-description">
+                    Intelligent call handling with Twilio integration, natural language processing, and smart routing based on caller intent.
+                </div>
+                
+                <div class="demo-section">
+                    <div class="demo-title">Live Call Simulation</div>
+                    <div class="phone-display">
+                        <div><span class="status-indicator status-online"></span>AI Assistant Active</div>
+                        <div style="margin-top: 10px;">Caller: (555) 123-4567</div>
+                        <div style="margin-top: 10px; font-size: 0.9rem;">AI: Hello! Thank you for calling Radiant Smiles. How can I help you today?</div>
+                    </div>
+                    <div style="text-align: center; color: #64748b; font-style: italic;">
+                        Full AI integration available with backend deployment
+                    </div>
+                </div>
+                
+                <div class="analytics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">47</div>
+                        <div class="metric-label">Calls Today</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">89%</div>
+                        <div class="metric-label">AI Handled</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Website + Social Media Chat Automation -->
+            <div class="system-card">
+                <div class="system-header">
+                    <div class="system-icon">💬</div>
+                    <div class="system-title">Website + Social Media Chat Automation</div>
+                </div>
+                <div class="system-description">
+                    Manychat integration for automated responses on website and social media platforms with intelligent lead qualification.
+                </div>
+                
+                <div class="demo-section">
+                    <div class="demo-title">Live Chat Simulation</div>
+                    <div class="simulation-area simulation-active">
+                        <div style="text-align: left; width: 100%;">
+                            <div style="background: #e5e7eb; padding: 10px; border-radius: 12px; margin: 5px 0;">
+                                <strong>AI:</strong> Hi! Welcome to Radiant Smiles. How can I help you today?
+                            </div>
+                            <div style="background: #3b82f6; color: white; padding: 10px; border-radius: 12px; margin: 5px 0; margin-left: 20%;">
+                                <strong>Visitor:</strong> I'm interested in teeth whitening
+                            </div>
+                            <div style="background: #e5e7eb; padding: 10px; border-radius: 12px; margin: 5px 0;">
+                                <strong>AI:</strong> Great choice! Our professional whitening starts at $299. Would you like to schedule a consultation?
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="analytics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">156</div>
+                        <div class="metric-label">Chats Today</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">73%</div>
+                        <div class="metric-label">Conversion</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lead Capture + Auto Follow-Up -->
+            <div class="system-card">
+                <div class="system-header">
+                    <div class="system-icon">🎯</div>
+                    <div class="system-title">Lead Capture + Auto Follow-Up</div>
+                </div>
+                <div class="system-description">
+                    Brevo integration for automated email and SMS follow-up sequences with personalized nurturing campaigns.
+                </div>
+                
+                <div class="demo-section">
+                    <div class="demo-title">Email & SMS Automation</div>
+                    <div class="simulation-area simulation-active">
+                        <div>✅ Lead Captured: john.smith@email.com</div>
+                        <div style="font-size: 0.9rem; color: #64748b; margin-top: 5px;">
+                            Automated email sequence initiated<br>
+                            SMS follow-up scheduled for 24 hours
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="analytics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">23</div>
+                        <div class="metric-label">New Leads</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">67%</div>
+                        <div class="metric-label">Email Open Rate</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Smart Booking System -->
+            <div class="system-card">
+                <div class="system-header">
+                    <div class="system-icon">📅</div>
+                    <div class="system-title">Smart Booking System</div>
+                </div>
+                <div class="system-description">
+                    Calendly + Google Calendar integration with Twilio SMS reminders and automated booking confirmations.
+                </div>
+                
+                <div class="demo-section">
+                    <div class="demo-title">Appointment Calendar</div>
+                    <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin: 15px 0;">
+                        <div style="text-align: center; font-weight: bold; color: #64748b;">S</div>
+                        <div style="text-align: center; font-weight: bold; color: #64748b;">M</div>
+                        <div style="text-align: center; font-weight: bold; color: #64748b;">T</div>
+                        <div style="text-align: center; font-weight: bold; color: #64748b;">W</div>
+                        <div style="text-align: center; font-weight: bold; color: #64748b;">T</div>
+                        <div style="text-align: center; font-weight: bold; color: #64748b;">F</div>
+                        <div style="text-align: center; font-weight: bold; color: #64748b;">S</div>
+                        <div style="aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: 8px; background: #dcfce7; border: 1px solid #16a34a; color: #15803d;">15</div>
+                        <div style="aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0;">16</div>
+                        <div style="aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: 8px; background: #dcfce7; border: 1px solid #16a34a; color: #15803d;">17</div>
+                        <div style="aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: 8px; background: #fef3c7; border: 1px solid #f59e0b; color: #d97706;">18</div>
+                        <div style="aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: 8px; background: #dcfce7; border: 1px solid #16a34a; color: #15803d;">19</div>
+                        <div style="aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0;">20</div>
+                        <div style="aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0;">21</div>
+                    </div>
+                </div>
+                
+                <div class="analytics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">34</div>
+                        <div class="metric-label">Bookings Today</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">92%</div>
+                        <div class="metric-label">Show Rate</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment + Invoicing -->
+            <div class="system-card">
+                <div class="system-header">
+                    <div class="system-icon">💳</div>
+                    <div class="system-title">Payment + Invoicing</div>
+                </div>
+                <div class="system-description">
+                    Square integration for secure payment processing and automated invoicing with payment confirmations.
+                </div>
+                
+                <div class="demo-section">
+                    <div class="demo-title">Payment Processing</div>
+                    <div style="display: grid; gap: 15px;">
+                        <div>
+                            <label style="font-weight: 500; margin-bottom: 5px; color: #374151; display: block;">Service</label>
+                            <select style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px;">
+                                <option>Teeth Whitening - $299</option>
+                                <option>Porcelain Veneers - $1,200</option>
+                                <option>Invisalign - $3,500</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="font-weight: 500; margin-bottom: 5px; color: #374151; display: block;">Payment Method</label>
+                            <select style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px;">
+                                <option>Credit Card</option>
+                                <option>Debit Card</option>
+                                <option>Payment Plan</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="analytics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">$12.4K</div>
+                        <div class="metric-label">Revenue Today</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">98%</div>
+                        <div class="metric-label">Success Rate</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Automation Review/Reputation Builder -->
+            <div class="system-card">
+                <div class="system-header">
+                    <div class="system-icon">⭐</div>
+                    <div class="system-title">Automation Review/Reputation Builder</div>
+                </div>
+                <div class="system-description">
+                    NiceJob and Brevo integration for automated review requests and reputation management with follow-up campaigns.
+                </div>
+                
+                <div class="demo-section">
+                    <div class="demo-title">Review Management</div>
+                    <div class="simulation-area simulation-active">
+                        <div>📧 Review request sent to: patient@email.com</div>
+                        <div style="font-size: 0.9rem; color: #64748b; margin-top: 5px;">
+                            Follow-up scheduled if no response in 7 days
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="analytics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">4.8</div>
+                        <div class="metric-label">Avg Rating</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">89%</div>
+                        <div class="metric-label">Response Rate</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Missed Call Text-Back System -->
+            <div class="system-card">
+                <div class="system-header">
+                    <div class="system-icon">📱</div>
+                    <div class="system-title">Missed Call Text-Back System</div>
+                </div>
+                <div class="system-description">
+                    Twilio + Zapier integration for instant SMS responses to missed calls with booking links and personalized messages.
+                </div>
+                
+                <div class="demo-section">
+                    <div class="demo-title">SMS Thread Simulation</div>
+                    <div class="sms-thread">
+                        <div class="sms-message sms-sent">Hi! We missed your call at 2:34 PM. We'd love to help you achieve your perfect smile! Reply 'BOOK' to schedule a free consultation or call (555) 123-SMILE. - Radiant Smiles</div>
+                        <div class="sms-message sms-received">BOOK</div>
+                        <div class="sms-message sms-sent">Great! Here's your booking link: radiantsmiles.com/book. You can also call us at (555) 123-SMILE. What service interests you most?</div>
+                        <div class="sms-message sms-received">Teeth whitening</div>
+                        <div class="sms-message sms-sent">Perfect! Our professional whitening treatment takes 60-90 minutes and costs $299-$599. Would you like to schedule a free consultation to discuss your goals?</div>
+                    </div>
+                </div>
+                
+                <div class="analytics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">12</div>
+                        <div class="metric-label">Missed Calls</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">85%</div>
+                        <div class="metric-label">SMS Response</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
